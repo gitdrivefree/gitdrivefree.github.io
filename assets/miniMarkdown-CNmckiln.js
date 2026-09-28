@@ -1,0 +1,9 @@
+import{j as m}from"./index-DjgCh057.js";function f(n){return n.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}function c(n){let e=f(n);return e=e.replace(/`([^`]+)`/g,"<code>$1</code>"),e=e.replace(/\*\*([^*]+)\*\*/g,"<strong>$1</strong>"),e=e.replace(/\*([^*]+)\*/g,"<em>$1</em>"),e=e.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,'<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>'),e}function g(n){const e=n.replace(/\r\n/g,`
+`).split(`
+`),t=[];let r=!1,p="",i=[],l=null;const s=()=>{l&&(t.push(`</${l}>`),l=null)};for(const o of e){const u=o.match(/^```(\w*)\s*$/);if(u){r?(r=!1,t.push(`<pre><code class="lang-${p}">${f(i.join(`
+`))}</code></pre>`)):(r=!0,p=u[1],i=[]);continue}if(r){i.push(o);continue}const a=o.match(/^(#{1,6})\s+(.*)$/);if(a){s();const h=a[1].length;t.push(`<h${h}>${c(a[2])}</h${h}>`);continue}const d=o.match(/^\s*\d+\.\s+(.*)$/),_=o.match(/^\s*[-*]\s+(.*)$/);if(d){l!=="ol"&&(s(),t.push("<ol>"),l="ol"),t.push(`<li>${c(d[1])}</li>`);continue}if(_){l!=="ul"&&(s(),t.push("<ul>"),l="ul"),t.push(`<li>${c(_[1])}</li>`);continue}s(),o.trim()===""?t.push(""):t.push(`<p>${c(o)}</p>`)}return s(),t.join(`
+`)}function $({source:n}){const e=g(n);return m.jsx("div",{className:`prose-sm max-w-none text-[var(--text)] [&_h1]:text-xl [&_h1]:font-bold [&_h2]:text-lg [&_h2]:font-semibold
+        [&_h3]:text-base [&_h3]:font-semibold [&_p]:my-2 [&_p]:text-sm [&_p]:leading-relaxed [&_ul]:my-2 [&_ul]:pl-5 [&_ul]:list-disc
+        [&_ol]:my-2 [&_ol]:pl-5 [&_ol]:list-decimal [&_li]:text-sm [&_a]:text-[var(--accent)] [&_a]:underline
+        [&_code]:rounded [&_code]:bg-[var(--bg-subtle)] [&_code]:px-1 [&_code]:py-0.5 [&_code]:text-[13px]
+        [&_pre]:overflow-x-auto [&_pre]:rounded-[var(--radius-md)] [&_pre]:bg-[var(--bg-subtle)] [&_pre]:p-3`,dangerouslySetInnerHTML:{__html:e}})}export{$ as MiniMarkdown,g as renderMiniMarkdown};
